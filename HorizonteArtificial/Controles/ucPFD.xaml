@@ -1,0 +1,17 @@
+﻿<UserControl
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:HorizonteArtificial.Controles" x:Class="HorizonteArtificial.Controles.ucPFD" 
+             mc:Ignorable="d" 
+             d:DesignHeight="500" d:DesignWidth="400">
+    <Grid>
+    <Border Name="Borde" BorderThickness="0" BorderBrush="Black" ClipToBounds="True" AllowDrop="True" CornerRadius="10" Padding="0" Margin="5">
+        <Border.Child>
+            <local:Background x:Name="Background" HorizontalAlignment="Left" Margin="-550,-500" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5"/>
+        </Border.Child>
+    </Border>
+    <Rectangle Stroke="Black" StrokeThickness="5" RadiusX="10" RadiusY="10"></Rectangle>
+    </Grid>
+</UserControl>
