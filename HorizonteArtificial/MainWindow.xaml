@@ -1,8 +1,9 @@
-﻿<Window xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:Controles="clr-namespace:HorizonteArtificial.Controles" x:Class="HorizonteArtificial.MainWindow"
-        Title="MainWindow" Height="735.932" Width="877.071">
+﻿<Window xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:Controles="clr-namespace:HorizonteArtificial.Controles" xmlns:local="clr-namespace:HorizonteArtificial" x:Class="HorizonteArtificial.MainWindow"
+        Title="MainWindow" Height="1131.932" Width="1419.071">
     <Grid>
-        <Controles:ucPFD x:Name="PFD" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="216,98,0,0"/>
-        <Slider x:Name="Roll" HorizontalAlignment="Left" Margin="686,279,0,0" VerticalAlignment="Top" Width="112" ValueChanged="Roll_ValueChanged" Maximum="180" SnapsToDevicePixels="True" Minimum="-180"/>
-        <Slider x:Name="Pitch" HorizontalAlignment="Left" Margin="686,325,0,0" VerticalAlignment="Top" Width="112" ValueChanged="Pitch_ValueChanged" Maximum="90" Minimum="-90"/>
+         <local:NewPFD x:Name="PFD1" HorizontalAlignment="Left" Height="300" VerticalAlignment="Top" Width="300" Margin="72,96,0,0"/>
+<Controles:ucPFD x:Name="PFD2" Margin="72,454,910,136" Width="400" Height="500" />
+        <Slider x:Name="PitchSelector" HorizontalAlignment="Left" Margin="796,551,0,0" VerticalAlignment="Top" Height="26" Width="188" Minimum="-90" Maximum="90" ValueChanged="PitchSelector_ValueChanged"/>
+        <Slider x:Name="RollSelector" HorizontalAlignment="Left" Margin="796,582,0,0" VerticalAlignment="Top" Height="20" Width="188" Minimum="-180" Maximum="180" ValueChanged="RollSelector_ValueChanged"/>
     </Grid>
 </Window>

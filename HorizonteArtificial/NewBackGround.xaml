@@ -1,0 +1,22 @@
+﻿<UserControl x:Name="Background" x:Class="HorizonteArtificial.NewBackGround"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" d:DesignWidth="400" Height="300">
+    <UserControl.Resources>
+        <GridLength x:Key="_GroundSize">200</GridLength>
+        <GridLength x:Key="_SkySize">200</GridLength>
+    </UserControl.Resources>
+    <Grid x:Name="Malla">
+        <Grid.Resources>
+            <GridLength x:Key="GridLength1">*</GridLength>
+        </Grid.Resources>
+        <Grid.RowDefinitions>
+            <RowDefinition x:Name="SkySize" Height="150" />
+            <RowDefinition x:Name="GroundSize" Height="150"/>
+        </Grid.RowDefinitions>        
+        <Rectangle x:Name="Cielo" Grid.Row="0" Fill="Blue"/>
+        <Rectangle x:Name="Tierra" Grid.Row="1" Fill="Brown"/>
+    </Grid>
+</UserControl>

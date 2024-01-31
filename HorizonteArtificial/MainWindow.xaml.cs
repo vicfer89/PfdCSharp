@@ -26,14 +26,16 @@ namespace HorizonteArtificial
             InitializeComponent();
         }
 
-        private void Roll_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        private void RollSelector_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
-            PFD.RollAngle = Roll.Value;
+            PFD1.roll = RollSelector.Value;
+            PFD2.RollAngle = RollSelector.Value;
         }
 
-        private void Pitch_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        private void PitchSelector_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
-            PFD.PitchAngle = Pitch.Value;
+            PFD1.pitch = PitchSelector.Value;
+            PFD2.PitchAngle = PitchSelector.Value;
         }
     }
 }
