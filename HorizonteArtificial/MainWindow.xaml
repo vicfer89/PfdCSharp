@@ -5,5 +5,6 @@
 <Controles:ucPFD x:Name="PFD2" Margin="72,454,910,136" Width="400" Height="500" />
         <Slider x:Name="PitchSelector" HorizontalAlignment="Left" Margin="796,551,0,0" VerticalAlignment="Top" Height="26" Width="188" Minimum="-90" Maximum="90" ValueChanged="PitchSelector_ValueChanged"/>
         <Slider x:Name="RollSelector" HorizontalAlignment="Left" Margin="796,582,0,0" VerticalAlignment="Top" Height="20" Width="188" Minimum="-180" Maximum="180" ValueChanged="RollSelector_ValueChanged"/>
+        <local:BarraDeProgreso x:Name="Progreso" Progreso="50" ProgressForegroundBrush="Green" PrograsoIndeterminado="False" Margin="819,389,427,626"></local:BarraDeProgreso>
     </Grid>
 </Window>

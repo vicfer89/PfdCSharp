@@ -30,6 +30,7 @@ namespace HorizonteArtificial
         {
             PFD1.roll = RollSelector.Value;
             PFD2.RollAngle = RollSelector.Value;
+            Progreso.Progreso = RollSelector.Value;
         }
 
         private void PitchSelector_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)

@@ -1,0 +1,159 @@
+﻿<UserControl x:Class="HorizonteArtificial.BarraDeProgreso"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.Background>
+        <LinearGradientBrush Opacity="0.5">
+            <GradientStopCollection>
+                <GradientStop Offset="0.1" Color="White"/>
+                <GradientStop Offset="0.5" Color="LightGray"/>
+                <GradientStop Offset="0.8" Color="White"/>
+            </GradientStopCollection>
+        </LinearGradientBrush>
+    </UserControl.Background>
+    <UserControl.Resources>
+        <Storyboard
+        x:Key="HideProgressBarStoryboard"
+        BeginTime="00:00:04"
+        SpeedRatio="2">
+            <DoubleAnimation
+           Storyboard.TargetProperty="(UIElement.RenderTransform).(TranslateTransform.Y)"/>
+        </Storyboard>
+        <Style
+            TargetType="{x:Type ProgressBar}">
+            <Setter Property="Background" Value="{Binding ProgressBackground,
+                                                  RelativeSource={RelativeSource Mode=FindAncestor,
+                                                  AncestorType={x:Type UserControl}}}"/>
+            <Setter Property="Foreground" Value="{Binding ProgressForeground,
+                                                  RelativeSource={RelativeSource Mode=FindAncestor,
+                                                  AncestorType={x:Type UserControl}}}"/>
+            <Setter Property="Height" Value="8"/>
+            <Setter Property="RenderTransform">
+                <Setter.Value>
+                    <TranslateTransform/>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type ProgressBar}">
+                        <Grid Name="TemplateRoot">
+                            <VisualStateManager.VisualStateGroups>
+                                <VisualStateGroup x:Name="CommonStates">
+                                    <VisualState x:Name="Determinate"/>
+                                    <VisualState x:Name="Indeterminate">
+                                        <Storyboard RepeatBehavior="Forever">
+                                            <RectAnimation
+                                                Storyboard.TargetName="Stripe"
+                                                Storyboard.TargetProperty="(Shape.Fill).(TileBrush.Viewport)"
+                                                Duration="0:0:1"
+                                                From="0,0,8,8" To="-8,0,8,8"/>
+                                        </Storyboard>
+                                    </VisualState>
+                                </VisualStateGroup>
+                            </VisualStateManager.VisualStateGroups>
+                            <Border Background="{TemplateBinding Background}"/>
+                            <Rectangle x:Name="PART_Track"/>
+                            <Grid x:Name="PART_Indicator"
+                                  ClipToBounds="True"
+                                  HorizontalAlignment="Left">
+                                <Rectangle x:Name="Indicator"
+                                Fill="{TemplateBinding Foreground}"/>
+                                    <Rectangle
+                                        Name="Stripe"
+                                        FlowDirection="RightToLeft">
+                                    <Rectangle.Fill>
+                                        <DrawingBrush
+                                            TileMode="Tile"
+                                            Stretch="Uniform"
+                                            Viewport="0,0,8,8"
+                                            ViewportUnits="Absolute">
+                                            <DrawingBrush.Drawing>
+                                                <GeometryDrawing Brush="Gray">
+                                                    <GeometryDrawing.Geometry>
+                                                        <PathGeometry>
+                                                            <PathGeometry.Figures>
+                                                                <PathFigureCollection>
+                                                                    <PathFigure StartPoint="0,0">
+                                                                        <LineSegment Point="5,0"/>
+                                                                        <LineSegment Point="10,5"/>
+                                                                        <LineSegment Point="10,10"/>
+                                                                    </PathFigure>
+                                                                    <PathFigure StartPoint="0,5">
+                                                                        <LineSegment Point="5,10"/>
+                                                                        <LineSegment Point="0,10"/>
+                                                                    </PathFigure>
+                                                                </PathFigureCollection>
+                                                            </PathGeometry.Figures>
+                                                        </PathGeometry>
+                                                    </GeometryDrawing.Geometry>
+                                                </GeometryDrawing>
+                                            </DrawingBrush.Drawing>
+                                        </DrawingBrush>
+                                    </Rectangle.Fill>
+                                </Rectangle>
+                            </Grid>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsIndeterminate" Value="True">
+                                <Trigger.EnterActions>
+                                    <BeginStoryboard
+            Storyboard="{StaticResource HideProgressBarStoryboard}"
+            Name="HideProgressBarStoryboard"/>
+                                </Trigger.EnterActions>
+                                <Trigger.ExitActions>
+                                    <RemoveStoryboard
+                                        BeginStoryboardName="HideProgressBarStoryboard"/>
+                                </Trigger.ExitActions>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </UserControl.Resources>
+    <Border Background="LightGray" CornerRadius="5" Padding="5" HorizontalAlignment="Center" VerticalAlignment="Center">
+        <Grid MaxWidth="500">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+            <Image Source="{StaticResource Icon.Busy}"
+                   Stretch="Uniform"
+                   Margin="5"
+                   Width="20"
+                   RenderOptions.BitmapScalingMode="HighQuality"
+                   RenderOptions.EdgeMode="Unspecified"/>
+            <TextBlock Grid.Column="1"
+                       TextAlignment="Left"
+                       TextWrapping="Wrap"
+                       TextTrimming="CharacterEllipsis"
+                       Text="{Binding Texto,
+                              FallbackValue='Espere Por Favor...',
+                              TargetNullValue='Espere Por Favor...',
+                              RelativeSource={RelativeSource Mode=FindAncestor,
+                                              AncestorType={x:Type UserControl}}
+                              }"
+                       VerticalAlignment="Center"
+                       MaxHeight="60"/>
+            <ProgressBar Grid.Row="1"
+                         Grid.ColumnSpan="2"
+                         BorderThickness="0"
+                         IsIndeterminate="{Binding ProgresoIndeterminado, 
+                                           RelativeSource={RelativeSource Mode=FindAncestor,
+                                           AncestorType={x:Type UserControl}}}"
+                         Visibility="{Binding Visibilidad, 
+                                           RelativeSource={RelativeSource Mode=FindAncestor,
+                                           AncestorType={x:Type UserControl}}}"
+                         Value="{Binding Progreso, 
+                                           RelativeSource={RelativeSource Mode=FindAncestor,
+                                           AncestorType={x:Type UserControl}}}"/>
+        </Grid>
+    </Border>
+</UserControl>
